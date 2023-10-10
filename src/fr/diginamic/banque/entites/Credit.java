@@ -11,5 +11,10 @@ public class Credit extends Operation {
 		return "CREDIT";
 	}
 
+	@Override
+	public double adjust(double montant) {
+		return montant += this.montant;
+	}
+
 	
 }

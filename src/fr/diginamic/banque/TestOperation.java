@@ -25,12 +25,8 @@ public class TestOperation {
 		
 		double montant = 0;
 		for(Operation i : tab) {
-			if(i instanceof Credit) {
-				montant += i.getMontant();
-			}
-			if(i instanceof Debit) {
-				montant -= i.getMontant();
-			}
+			montant = i.adjust(montant);
+			System.out.println("Montant = "+montant);
 		}
 		System.out.println("Montant = "+montant);
 	}
