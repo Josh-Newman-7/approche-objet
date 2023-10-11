@@ -2,7 +2,6 @@ package TP10.listes;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class FusionList {
 	public static void main(String args[]) {
