@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
 
 public class LectureFichier {
 
@@ -36,12 +39,30 @@ public class LectureFichier {
                 
                 Ville ville = new Ville(nom, codeDepartement, nomRegion, populationTotale);
                 //System.out.println(ville.toString());
-                list.add(ville);
+                if(ville.getPopulation()>=25000) {
+                	list.add(ville);
+                }
             }
 
             for (Ville ville : list) {
                 System.out.println(ville);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/temp/villes_plus_de_25000.csv"))) {
+            // Écrire l'en-tête
+            writer.write("Nom;Code Département;Nom de la Région;Population Totale\n");
+
+            for (Ville ville : list) {
+                if (ville.getPopulation() > 25000) {
+                    // Écrire les informations de la ville dans le fichier de sortie
+                    writer.write(String.format("%s;%s;%s;%d\n", ville.getName(), ville.getCodeDepartement(), ville.getNameRegion(), ville.getPopulation()));
+                }
+            }
+            System.out.println("Done");
         } catch (IOException e) {
             e.printStackTrace();
         }
